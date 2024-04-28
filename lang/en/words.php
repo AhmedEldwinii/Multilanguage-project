@@ -24,6 +24,8 @@ return [
     'logo' => 'Logo',
     'phone' => 'Phone Number',
     'favicon' => 'Favicon',
+    'logout' => 'Log out',
+    'users' => 'Users',
 
 ];
 

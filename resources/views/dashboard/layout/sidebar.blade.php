@@ -33,6 +33,15 @@
             </a>
           </li>
           <li class="nav-item">
+              <a href="{{ route('dashboard.users.index') }}" class="nav-link">
+                  <i class="nav-icon fas fa-users"></i>
+                  <p>
+                      Members
+                      {{-- <span class="">&#9881;</span> --}}
+                  </p>
+              </a>
+          </li>
+          <li class="nav-item">
             <a href="{{ route('dashboard.settings.index') }}" class="nav-link">
                 <i class="nav-icon fas fa-cog"></i>
                 <p>
@@ -40,6 +49,19 @@
                     {{-- <span class="">&#9881;</span> --}}
                 </p>
             </a>
+        </li>
+        <li class="nav-item">
+            <a href="" class="nav-link"  onclick="event.preventDefault();
+            document.getElementById('logout-form').submit();">
+                <i class="nav-icon fas fa-sign-out-alt"></i>
+                <p>
+                    {{ __('words.logout') }}
+                    {{-- <span class="">&#9881;</span> --}}
+                </p>
+            </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+            </form>
         </li>
         </ul>
       </nav>

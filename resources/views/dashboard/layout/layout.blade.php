@@ -31,9 +31,14 @@
   <!-- Custom style for RTL -->
   <link rel="stylesheet" href="{{ asset('dashboard') }}/dist/css/custom.css">
 
-    {{--  Dropify  --}}
-  <link rel="stylesheet" href="{{ asset('dashboard') }}/dist/dropify.css">
+{{-- yajra  --}}
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/2.0.5/css/dataTables.bootstrap4.min.css">
+
+    {{--  Dropify  --}}
+<link rel="stylesheet" href="{{ asset('dashboard') }}/dist/dropify.css">
+
+
 
 
 
@@ -235,7 +240,7 @@
 <script src="{{ asset('dashboard') }}/plugins/moment/moment.min.js"></script>
 <script src="{{ asset('dashboard') }}/plugins/daterangepicker/daterangepicker.js"></script>
 <!-- Tempusdominus Bootstrap 4 -->
-<script src="{{ asset('dashboard') }}/plugins/tempusdominus-bootstrap-4/js/tempusdominus-   strap-4.min.js"></script>
+<script src="{{ asset('dashboard') }}/plugins/tempusdominus-bootstrap-4/js/tempusdominus-Bootstrap-4.min.js"></script>
 <!-- Summernote -->
 <script src="{{ asset('dashboard') }}/plugins/summernote/summernote-bs4.min.js"></script>
 <!-- overlayScrollbars -->
@@ -249,10 +254,17 @@
     {{--  Dropify --}}
 <script src="{{ asset('dashboard') }}/dist/dropify.js"></script>
 
+{{-- yajra  --}}
+<script src="https://cdn.datatables.net/2.0.5/js/dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/2.0.5/js/dataTables.bootstrap4.min.js"></script>
+
 
 <script>
     $('.dropify').dropify();
 </script>
+
+
+@stack('javascripts')
 
 
 </body>
