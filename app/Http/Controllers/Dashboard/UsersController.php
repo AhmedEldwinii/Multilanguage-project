@@ -69,9 +69,7 @@ class UsersController extends Controller
         return view('dashboard.users.edit' , compact('user'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+   
     public function update(UsersUpdateRequest $request, User $user)
     {
         $user->update($request->validated());
