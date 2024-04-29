@@ -20,12 +20,12 @@ class SettingsController extends Controller
     {
         // dd($request->all());
         $setting->update($request->validated());
-        // dd($request->all());
 
         if ($request->has("logo")){
             $logo = (ImageUpload::uploadImage($request->logo , 200 , 300 , 'logo/' ));
             $setting->update(['logo' => $logo]);
         };
+        // dd($request->all());
 
         if ($request->has("favicon")){
             $favicon = (ImageUpload::uploadImage($request->favicon , 200 , 300 , 'favicon/' ));

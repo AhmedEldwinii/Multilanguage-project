@@ -48,6 +48,7 @@
                  </div>
             </div>
 
+            <label class="blockquote-footer Source Title ">Password</label>
             <div class="form-group col">
                 <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fas fa-solid fa-unlock"></i>
@@ -56,7 +57,8 @@
                  </div>
             </div>
 
-            <div class="form-floating col-md-4">
+            <label class="blockquote-footer Source Title ">Select Status </label>
+            <div class="form-floating col">
                 <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fas fa-hand-pointer"></i></span>
                     <select class="form-control" id="" name="status">

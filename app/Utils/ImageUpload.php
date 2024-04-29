@@ -20,7 +20,7 @@ class ImageUpload{
             $constraint->upsize();
         })->stream();
         Storage::disk('images')->put($path.$imagename,$image);
-
+        // dd($request);
         return $path.$imagename;
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dashboard\CategoryController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\IndexController;
@@ -36,8 +37,14 @@ Route::group(["as" => "dashboard." , 'middleware'=>'auth'], function () {
     // users
     Route::get('/users/ajax' , [UsersController::class , 'getAllData'])->name('users.getAllData');
     Route::delete('/users/delete' , [UsersController::class , 'delete'])->name('users.delete');
-
     Route::resource('/users' , UsersController::class);
+
+
+
+    //categories
+    Route::get('/categories/ajax' , [CategoryController::class , 'getAllCategory'])->name('categories.getAllCategory');
+    Route::delete('/categories/delete' , [CategoryController::class , 'delete'])->name('categories.delete');
+    Route::resource('/categories' , CategoryController::class);
 
 
 

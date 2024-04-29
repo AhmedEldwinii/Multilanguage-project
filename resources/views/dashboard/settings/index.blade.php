@@ -85,7 +85,7 @@
 
         </div>
 
-
+/div>
       <div class="">
         <div class="card-header">
         </div>
@@ -143,7 +143,7 @@
 
         </div>
         <!-- /.card-body -->
-      </div>
+      <
 
     <div class="card-footer">
         <button type="submit" class="btn btn-primary">Submit</button>
