@@ -10,5 +10,5 @@ class PostTranslation extends Model
     use HasFactory;
 
     public $timestamps = false;
-    protected $fillable = ['id', 'title', 'locale', 'content', 'smallDesc', 'post_id'];
+    protected $fillable = ['id', 'title', 'locale', 'content', 'smallDesc', 'tags' , 'post_id'];
 }

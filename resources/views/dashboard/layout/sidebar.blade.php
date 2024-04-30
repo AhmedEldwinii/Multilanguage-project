@@ -33,6 +33,15 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="{{ route('dashboard.posts.index') }}" class="nav-link">
+                <i class="nav-icon fas fa-regular fa-paste"></i>
+                <p>
+                    Posts
+                    {{-- <span class="">&#9881;</span> --}}
+                </p>
+            </a>
+        </li>
+          <li class="nav-item">
             <a href="{{ route('dashboard.categories.index') }}" class="nav-link">
                 <i class="nav-icon fas fa-th"></i>
                 <p>
@@ -41,6 +50,7 @@
                 </p>
             </a>
         </li>
+
           <li class="nav-item">
               <a href="{{ route('dashboard.users.index') }}" class="nav-link">
                   <i class="nav-icon fas fa-users"></i>

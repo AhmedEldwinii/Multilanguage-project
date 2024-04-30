@@ -4,6 +4,7 @@ use App\Http\Controllers\Dashboard\CategoryController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\IndexController;
+use App\Http\Controllers\Dashboard\PostController;
 use App\Http\Controllers\Dashboard\SettingsController;
 use App\Http\Controllers\Dashboard\UsersController;
 use App\Http\Middleware\CheckAdmin;
@@ -45,6 +46,13 @@ Route::group(["as" => "dashboard." , 'middleware'=>'auth'], function () {
     Route::get('/categories/ajax' , [CategoryController::class , 'getAllCategory'])->name('categories.getAllCategory');
     Route::delete('/categories/delete' , [CategoryController::class , 'delete'])->name('categories.delete');
     Route::resource('/categories' , CategoryController::class);
+
+
+
+    // posts
+    Route::get('/posts/ajax' , [PostController::class , 'getAllPost'])->name('posts.getAllPost');
+    Route::delete('/posts/delete' , [PostController::class , 'delete'])->name('posts.delete');
+    Route::resource('/posts' , PostController::class);
 
 
 

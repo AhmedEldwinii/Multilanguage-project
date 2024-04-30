@@ -258,6 +258,34 @@
 <script src="https://cdn.datatables.net/2.0.5/js/dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/2.0.5/js/dataTables.bootstrap4.min.js"></script>
 
+{{-- CK editor 5--}}
+<script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var allEditors = document.querySelectorAll('#editor');
+        for (var i = 0; i < allEditors.length; ++i) {
+            ClassicEditor
+                .create(allEditors[i], {
+                    alignment: {
+                        options: ['left', 'right', 'center'],
+                    }
+                })
+                .then(editor => {
+                    editor.editing.view.change(writer => {
+                        writer.setStyle('min-width', '800px', editor.editing.view.document.getRoot());
+                        writer.setStyle('min-height', '180px', editor.editing.view.document.getRoot());
+
+                    });
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        }
+    });
+</script>
+
 
 <script>
     $('.dropify').dropify();

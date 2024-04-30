@@ -1,6 +1,6 @@
 @extends('dashboard.layout.layout')
 
-@section('title2', __('Categories'))
+@section('title2', 'Posts')
 
 @section('index')
 
@@ -8,8 +8,8 @@
     <br>
     <div>
         <div>
-            <button class="btn btn-secondary btn-xs mr-3" onclick="window.location.href='{{ route('dashboard.categories.create') }}';" type="submit">
-                  Create Category  <i class="fas fa-plus"></i></button>
+            <button class="btn btn-secondary btn-xs mr-3" onclick="window.location.href='{{ route('dashboard.posts.create') }}';" type="submit">
+                  Add New Post  <i class="fas fa-plus"></i></button>
         </div>
     </div>
     <br>
@@ -21,7 +21,7 @@
                         <th style="width: 4%">#</th>
                         <th style="width: 20%">Title</th>
                         <th style="width: 23%">Image</th>
-                        <th style="width: 20%">Parent</th>
+                        <th style="width: 20%">Category.name</th>
                         <th style="width: 20%">Action</th>
                     </tr>
                 </thead>
@@ -37,7 +37,7 @@
     {{-- DELETE --}}
     <div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <form action="{{ route('dashboard.categories.delete') }}" method="POST">
+            <form action="{{ route('dashboard.posts.delete') }}" method="POST">
                 @csrf
                 @method('DELETE')
                 <div class="modal-content">
@@ -70,7 +70,7 @@
             $('#table_id').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('dashboard.categories.getAllCategory') }}",
+                ajax: "{{ route('dashboard.posts.getAllPost') }}",
                 columns: [
                     {},
                     {
@@ -81,9 +81,10 @@
                         data: 'image',
                         name: 'image',
                     },
+
                     {
-                        data: 'parent',
-                        name: 'parent',
+                        data: 'category_name',
+                        name: 'category_name',
                     },
                     {
                         data: 'action',
