@@ -102,6 +102,12 @@ class PostController extends Controller
         //
     }
 
+    
+    public function show()
+    {
+        //
+    }
+
     public function delete( Request $request)
     {
         Post::where('id' ,$request->id)->delete();

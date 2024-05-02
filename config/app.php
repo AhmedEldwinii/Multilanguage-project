@@ -79,7 +79,7 @@ return [
     */
 
 
-    'locale' =>'en',
+    'locale' =>'ar',
 
     'languages' => [
         'ar' => 'العربية',
