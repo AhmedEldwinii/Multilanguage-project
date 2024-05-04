@@ -3,7 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | Dashboard</title>
+  <meta  name="description" content="{{ $setting->translate(app()->getlocale())->content}}">
+  <meta  name="keyword" content="{{ $setting->translate(app()->getlocale())->name}}">
+  <link rel="shortcut icon" href="{{ asset($setting->favicon) }}">
+  <title>{{ $setting->translate(app()->getlocale())->name}}</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -81,7 +84,7 @@
 
 
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">{{ auth()->user()->name }} \ {{ auth()->user()->status }}</a>
+        <a href="{{ route('dashboard.users.index') }}" class="nav-link">{{ auth()->user()->name }} \ {{ auth()->user()->status }}</a>
       </li>
       <li class="nav-item dropdown">
 

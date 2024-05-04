@@ -1,6 +1,6 @@
 @extends('dashboard.layout.layout')
 
-@section('title2','Edit User')
+@section('title2',__('words.useredit'))
 
 @section('index')
 
@@ -18,7 +18,7 @@
 
 
     <div class="card-header">
-        <h3 class="btn btn-block btn-info ">Edit User</h3>
+        <h3 class="btn btn-block btn-info ">{{ __('words.useredit') }}</h3>
     </div>
 
     <form action="{{ route('dashboard.users.update' , $user) }}" method="POST" enctype="multipart/form-data">
@@ -33,7 +33,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fas fa-solid fa-file-signature"></i>
                     </span>
-                    <input type="name" class="form-control" id="exampleInputEmail1" placeholder="Enter name"
+                    <input type="name" class="form-control" id="exampleInputEmail1" placeholder="{{ __('words.name') }}"
                     name="name" value="{{ $user->name }}">
                  </div>
             </div>
@@ -48,21 +48,24 @@
                  </div>
             </div>
 
-            <label class="blockquote-footer Source Title ">Select Status</label>
-            <div class="form-floating col>
+
+            @can('viewAny', $user)
+            <label class="blockquote-footer Source Title ">{{ __('words.select') }} {{ __('words.status') }}</label>
+            <div class="form-floating col">
                 <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fas fa-hand-pointer"></i></span>
                     <select class="form-control" id="" name="status">
-                        <option value="admin"  @if ($user->status == 'admin') selected @endif>Admin</option>
-                        <option value="writer" @if ($user->status == 'writer') selected @endif>Writer</option>
-                        <option value="" @if ($user->status == '') selected @endif>Input the status</option>
+                        <option value="admin"  @if ($user->status == 'admin') selected @endif>{{ __('words.admin') }}</option>
+                        <option value="writer" @if ($user->status == 'writer') selected @endif>{{ __('words.status') }}</option>
+                        <option value="" @if ($user->status == '') selected @endif>{{ __('words.inputstatus') }}</option>
                     </select>
                 </div>
             </div>
+            @endcan
             <br>
 
             <div class="card-footer">
-                <button type="submit" class="btn btn-info">Submit</button>
+                <button type="submit" class="btn btn-info">{{ __('words.submit') }}</button>
             </div>
         </form>
     </div>

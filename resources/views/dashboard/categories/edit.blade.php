@@ -1,6 +1,6 @@
 @extends('dashboard.layout.layout')
 
-@section('title2','Edit Category')
+@section('title2', __('words.edit') , __('words.category'))
 
 @section('index')
 
@@ -18,7 +18,7 @@
 
 
     <div class="card-header">
-        <h3 class="btn btn-block btn-info ">Edit Category</h3>
+        <h3 class="btn btn-block btn-info "> {{ __('words.edit') }}  {{ __('words.category') }}</h3>
     </div>
 
 
@@ -29,7 +29,7 @@
         <div class="card-body ">
 
 
-            <label class="blockquote-footer Source Title ">Select Category</label>
+            <label class="blockquote-footer Source Title ">{{ __('words.select') }}  {{ __('words.category') }}</label>
             <div class="form-group col">
                 <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fas fa-hand-pointer"></i></span>
@@ -46,7 +46,7 @@
             <br>
 
             <div class=" col mb-3">
-                    <label for="formFile" class="form-label" > <i class="fas fa-anchor"></i> Image  </label>
+                    <label for="formFile" class="form-label" > <i class="fas fa-anchor"></i> {{ __('words.image') }}  </label>
                     <input class="form-control dropify" type="file" id="formFile" name="image"
                         data-default-file="{{ asset($category->image) }}">
                     </div>
@@ -100,7 +100,7 @@
 
 
             <div class="card-footer">
-                <button type="submit" class="btn btn-info">Submit</button>
+                <button type="submit" class="btn btn-info">{{ __('words.submit') }}</button>
             </div>
         </form>
     </div>

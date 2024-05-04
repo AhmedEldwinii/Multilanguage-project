@@ -85,7 +85,6 @@
 
         </div>
 
-/div>
       <div class="">
         <div class="card-header">
         </div>
@@ -143,10 +142,10 @@
 
         </div>
         <!-- /.card-body -->
-      <
+
 
     <div class="card-footer">
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">{{ __('words.submit') }}</button>
     </div>
 </form>
     </div>

@@ -23,7 +23,7 @@
 
 
     <form action="{{ route('dashboard.posts.update' , $post) }}" method="POST" enctype="multipart/form-data">
-        @method('post')
+        @method('put')
         @csrf
 
         <div class="card-body ">

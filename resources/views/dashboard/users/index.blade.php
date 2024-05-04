@@ -9,7 +9,7 @@
     <div>
         <div>
             <button class="btn btn-secondary btn-xs mr-3" onclick="window.location.href='{{ route('dashboard.users.create') }}';" type="submit">
-                Users Create <i class="fas fa-plus"></i></button>
+                {{ __('words.usercreate') }} <i class="fas fa-plus"></i></button>
         </div>
     </div>
     <br>
@@ -19,10 +19,10 @@
                 <thead class="text-center">
                     <tr>
                         <th style="width: 4%">#</th>
-                        <th style="width: 20%">Username</th>
-                        <th style="width: 23%">Email</th>
-                        <th style="width: 20%">Status</th>
-                        <th style="width: 20%">Action</th>
+                        <th style="width: 20%">{{ __('words.user') }}</th>
+                        <th style="width: 23%">{{ __('words.email') }}</th>
+                        <th style="width: 20%">{{ __('words.status') }}</th>
+                        <th style="width: 20%">{{ __('words.action') }}</th>
                     </tr>
                 </thead>
                 <tbody class="text-center" >

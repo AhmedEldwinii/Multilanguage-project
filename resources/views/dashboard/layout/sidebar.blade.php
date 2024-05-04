@@ -15,7 +15,7 @@
           <img src="{{ asset('dashboard') }}/dist//img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="{{ route('dashboard.users.index') }}" class="d-block"> {{ auth()->user()->name }} </a>
         </div>
       </div>
 
@@ -36,39 +36,46 @@
             <a href="{{ route('dashboard.posts.index') }}" class="nav-link">
                 <i class="nav-icon fas fa-regular fa-paste"></i>
                 <p>
-                    Posts
-                    {{-- <span class="">&#9881;</span> --}}
-                </p>
-            </a>
-        </li>
-          <li class="nav-item">
-            <a href="{{ route('dashboard.categories.index') }}" class="nav-link">
-                <i class="nav-icon fas fa-th"></i>
-                <p>
-                    Categories
+                    {{ __('words.posts') }}
                     {{-- <span class="">&#9881;</span> --}}
                 </p>
             </a>
         </li>
 
+        @can('view', $setting)
           <li class="nav-item">
-              <a href="{{ route('dashboard.users.index') }}" class="nav-link">
-                  <i class="nav-icon fas fa-users"></i>
-                  <p>
-                      Members
-                      {{-- <span class="">&#9881;</span> --}}
-                  </p>
-              </a>
-          </li>
-          <li class="nav-item">
-            <a href="{{ route('dashboard.settings.index') }}" class="nav-link">
-                <i class="nav-icon fas fa-cog"></i>
+            <a href="{{ route('dashboard.categories.index') }}" class="nav-link">
+                <i class="nav-icon fas fa-th"></i>
                 <p>
-                     {{ __('words.settings') }}
+                    {{ __('words.categories') }}
                     {{-- <span class="">&#9881;</span> --}}
                 </p>
             </a>
         </li>
+        @endcan
+
+        <li class="nav-item">
+            <a href="{{ route('dashboard.users.index') }}" class="nav-link">
+                <i class="nav-icon fas fa-users"></i>
+                <p>
+                    {{ __('words.members') }}
+                    {{-- <span class="">&#9881;</span> --}}
+                </p>
+            </a>
+        </li>
+
+        @can('view', $setting)
+          <li class="nav-item">
+              <a href="{{ route('dashboard.settings.index') }}" class="nav-link">
+                <i class="nav-icon fas fa-cog"></i>
+                <p>
+                    {{ __('words.settings') }}
+                    {{-- <span class="">&#9881;</span> --}}
+                </p>
+            </a>
+        </li>
+        @endcan
+
         <li class="nav-item">
             <a href="" class="nav-link"  onclick="event.preventDefault();
             document.getElementById('logout-form').submit();">

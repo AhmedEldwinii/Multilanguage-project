@@ -1,6 +1,6 @@
 @extends('dashboard.layout.layout')
 
-@section('title2', __('Categories'))
+@section('title2', __('words.categories'))
 
 @section('index')
 
@@ -9,7 +9,7 @@
     <div>
         <div>
             <button class="btn btn-secondary btn-xs mr-3" onclick="window.location.href='{{ route('dashboard.categories.create') }}';" type="submit">
-                  Create Category  <i class="fas fa-plus"></i></button>
+                  {{ __("words.create") }} {{ __('words.category') }}  <i class="fas fa-plus"></i></button>
         </div>
     </div>
     <br>
@@ -19,10 +19,10 @@
                 <thead class="text-center">
                     <tr>
                         <th style="width: 4%">#</th>
-                        <th style="width: 20%">Title</th>
-                        <th style="width: 23%">Image</th>
-                        <th style="width: 20%">Parent</th>
-                        <th style="width: 20%">Action</th>
+                        <th style="width: 20%">{{ __('words.title') }}</th>
+                        <th style="width: 23%">{{ __('words.image') }}</th>
+                        <th style="width: 20%">{{ __('words.parent') }}</th>
+                        <th style="width: 20%">{{ __('words.action') }}</th>
                     </tr>
                 </thead>
                 <tbody class="text-center" >

@@ -8,13 +8,22 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\Categories\CategoriesStoreRequest;
 use App\Http\Requests\Dashboard\Categories\CategoriesUpdateRequest;
+use App\Models\Setting;
 use Yajra\DataTables\Facades\DataTables;
 
 class CategoryController extends Controller
 {
 
+    protected $setting;
+
+    public function __construct(Setting $setting)
+    {
+        $this->setting = $setting;
+    }
+
     public function index()
     {
+        $this->authorize('view' ,$this->setting);
         return view('dashboard.categories.index');
     }
 
@@ -46,6 +55,7 @@ class CategoryController extends Controller
 
     public function create()
     {
+        $this->authorize('view' ,$this->setting);
         $categories = Category::where('parent_id' , null)->orWhere('parent_id', 0)->get();
         return view('dashboard.categories.create' , compact('categories'));
     }
@@ -73,7 +83,7 @@ class CategoryController extends Controller
 
     public function edit(Category $category)
     {
-
+        $this->authorize('view' ,$this->setting);
         $categories = Category::where('parent_id' , null)->orWhere('parent_id', 0)->get();
         return view('dashboard.categories.edit' , compact('category' , 'categories'));
     }
@@ -104,6 +114,7 @@ class CategoryController extends Controller
 
     public function delete( Request $request)
     {
+        $this->authorize('view' ,$this->setting);
         Category::where('id' ,$request->id)->delete();
         Category::where('parent_id' ,$request->id)->delete();
         return redirect()->route('dashboard.categories.index');

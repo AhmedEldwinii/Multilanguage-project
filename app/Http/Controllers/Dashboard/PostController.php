@@ -41,11 +41,23 @@ class PostController extends Controller
         return DataTables::of($query)
             ->addIndexColumn()
             ->addColumn('action', function ($row) {
-                return '<a href="' . route('dashboard.posts.edit', $row->id) . '" class="edit btn btn-secondary"><i class="fas fa-thin fa-pen-fancy"></i></a>
-                <button type="button" id="deleteBtn" data-id="' . $row->id .'" class="btn btn-danger mt-md-0 mt-2" data-toggle="modal" data-target="#deletemodal"><i class="fa fa-trash"></i></button>';
+
+                if(auth()->user()->can('update' , $row)){
+                    return '<a href="' . route('dashboard.posts.edit', $row->id) . '" class="edit btn btn-secondary"><i class="fas fa-thin fa-pen-fancy"></i></a>
+                            <button type="button" id="deleteBtn" data-id="' . $row->id .'" class="btn btn-danger mt-md-0 mt-2" data-toggle="modal" data-target="#deletemodal"><i class="fa fa-trash"></i></button>';
+                } else {
+                    return '<h10 class="text-muted">Not Available</h10>';
+                }
             })
             ->addColumn('category_name', function ($row) {
-                return  $row->category->translate(app()->getLocale())->title;
+                // Check if category exists and has translations
+                if ($row->category && $row->category->hasTranslation('title')) {
+                    // Return translated title
+                    return $row->category->translate(app()->getLocale())->title;
+                } else {
+                    // Return a placeholder if translation doesn't exist
+                    return __('Unknown');
+                }
             })
             ->addColumn('image', function ($row) {
                 return '<img src="'.asset($row->image).'" width="100px" height="100px">';
@@ -56,60 +68,73 @@ class PostController extends Controller
 
 
 
-    public function store(PostsStoreRequest $request)
+
+
+
+    public function store(PostsStoreRequest $request , Post $post)
     {
         // dd($request->all());
         $validatedData = $request->validated();
+
         if ($request->hasFile('image')) {
             $imagePath = ImageUpload::uploadImage($request->file('image'));
 
             $validatedData['image'] = $imagePath;
         }
+        $post->update(['user_id' => auth()->user()->id]);
         // dd($validatedData);
         Post::create($validatedData);
         return redirect()->route('dashboard.posts.index');
     }
 
 
+
+
     public function edit(Post $post)
     {
+        $this->authorize('update' , $post);
         $categories = Category::all();
         return view('dashboard.posts.edit' , compact('post' , 'categories'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+
+
+
+
     public function update( PostsUpdateRequest $request, Post $post)
     {
-        // dd($request->all());
+        $this->authorize('update' , $post);
         $validatedData = $request->validated();
+
         if ($request->hasFile('image')) {
             $imagePath = ImageUpload::uploadImage($request->file('image'));
-
             $validatedData['image'] = $imagePath;
         }
-        // dd($validatedData);
-        $post->updated($validatedData);
+
+        $post->update(['user_id' => auth()->user()->id]);
+
+        $post->update($validatedData);
+
         return redirect()->route('dashboard.posts.index');
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(string $id)
     {
         //
     }
 
-    
+
     public function show()
     {
         //
     }
 
-    public function delete( Request $request)
+    public function delete( Request $request , Post $post)
     {
+        $this->authorize('delete' , $post);
+
         Post::where('id' ,$request->id)->delete();
         return redirect()->route('dashboard.posts.index');
     }

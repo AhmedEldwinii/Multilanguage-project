@@ -26,6 +26,31 @@ return [
     'favicon' => 'Favicon',
     'logout' => 'Log out',
     'users' => 'Users',
+    'user' => 'Username',
+    'usercreate' => 'User Create',
+    'status' => 'Status',
+    'action' => 'Action',
+    'members' => 'Members',
+    'posts' => 'Posts' ,
+    'categories' => 'Categories',
+    'select' => 'Select' ,
+    'submit' => 'Submit',
+    'admin' => "Admin" ,
+    'writer' => 'Writer',
+    'inputstatus' => 'Input the status',
+    'name' => 'Enter Name',
+    'useredit' => 'Edit User',
+    'create' => 'Create',
+    'edit' => 'Edit',
+    'category' => 'Category',
+    'title' => 'Title',
+    'image' => 'Image',
+    'parent' => 'Parent'
+
+
+
+
+
 
 ];
 

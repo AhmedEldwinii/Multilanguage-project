@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Dashboard\Users;
 
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UsersUpdateRequest extends FormRequest
@@ -23,7 +24,7 @@ class UsersUpdateRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email',
+            'email' => 'required|string|email|max:255|unique:users,email,'.$this->user->id,
             'status' => 'required|in:null,admin,writer',
         ];
     }

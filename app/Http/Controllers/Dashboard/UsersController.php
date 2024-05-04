@@ -14,6 +14,12 @@ use App\Http\Requests\Dashboard\Users\UsersUpdateRequest;
 class UsersController extends Controller
 {
 
+    protected $user;
+    public function __construct(User $user)
+    {
+        $this->user = $user;
+    }
+
     public function index()
     {
         return view('dashboard.users.index');
@@ -22,6 +28,7 @@ class UsersController extends Controller
 
     public function create()
     {
+        $this->authorize('viewAny' , $this->user );
         return view('dashboard.users.create');
     }
 
@@ -30,12 +37,25 @@ class UsersController extends Controller
 
     public function getAllData()
     {
-        $query = User::select('*');
+
+        if(auth()->user()->can('viewAny' , $this->user )){
+            $query = User::select('*');
+        }else{
+            $query = User::where('id' , auth()->user()->id);
+        }
+
         return  DataTables::of($query)
         ->addIndexColumn()
         ->addColumn('action', function ($row) {
-            return '<a href="' . route('dashboard.users.edit', $row->id) . '" class="edit btn btn-secondary"><i class="fas fa-thin fa-pen-fancy"></i></a>
-            <button type="button" id="deleteBtn" data-id="' . $row->id .'" class="btn btn-danger mt-md-0 mt-2" data-toggle="modal" data-target="#deletemodal"><i class="fa fa-trash"></i></button>';
+
+            $btn = "";
+            if(auth()->user()->can('update' , $row)){
+            $btn = '<a href="' . route('dashboard.users.edit', $row->id) . '" class="edit btn btn-secondary"><i class="fas fa-thin fa-pen-fancy"></i></a>';
+            }
+            if(auth()->user()->can('delete', $row)){
+            $btn =  '<a href="' . route('dashboard.users.edit', $row->id) . '" class="edit btn btn-secondary"><i class="fas fa-thin fa-pen-fancy"></i></a>
+                     <button type="button" id="deleteBtn" data-id="' . $row->id .'" class="btn btn-danger mt-md-0 mt-2" data-toggle="modal" data-target="#deletemodal"><i class="fa fa-trash"></i></button>';
+            }return $btn;
         })
 
         ->addColumn('status' , function($row){
@@ -52,6 +72,7 @@ class UsersController extends Controller
 
     public function store(UsersStoreRequest $request)
     {
+        $this->authorize('update' , $this->user );
         User::create($request->validated());
         return redirect()->route('dashboard.users.index');
     }
@@ -66,12 +87,14 @@ class UsersController extends Controller
 
     public function edit(User $user)
     {
+        $this->authorize('update' , $user );
         return view('dashboard.users.edit' , compact('user'));
     }
 
-   
+
     public function update(UsersUpdateRequest $request, User $user)
     {
+        $this->authorize('update' , $user );
         $user->update($request->validated());
         return redirect()->route('dashboard.users.index');
     }
@@ -83,6 +106,7 @@ class UsersController extends Controller
     }
     public function delete( Request $request)
     {
+        $this->authorize('delete' , $this->user );
         User::where('id' ,$request->id)->delete();
         return redirect()->route('dashboard.users.index');
     }

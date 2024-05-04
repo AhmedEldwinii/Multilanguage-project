@@ -21,7 +21,7 @@
                         <th style="width: 4%">#</th>
                         <th style="width: 20%">Title</th>
                         <th style="width: 23%">Image</th>
-                        <th style="width: 20%">Category.name</th>
+                        <th style="width: 20%">Category Name</th>
                         <th style="width: 20%">Action</th>
                     </tr>
                 </thead>
